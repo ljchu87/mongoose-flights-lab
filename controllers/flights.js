@@ -26,6 +26,10 @@ function index(req,res) {
       title: 'All Flights'
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/flights/new')
+  })
 }
 
 export {
