@@ -7,7 +7,10 @@ const ticketSchema = new Schema({
     type: String,
     match: /[A-F][1-9]\d?/,
   },
-  price: Number,
+  price: {
+    type: Number,
+    min: 0
+  },
 }, {
   timestamps: true
 })
@@ -27,7 +30,12 @@ const flightSchema = new Schema({
     min: 10,
     max: 9999
   },
-  departs: Date,
+  departs: {
+    type: Date,
+    default: function() {
+      return new Date().setFullYear(new Date().getFullYear() +1 )
+    }
+  },
   tickets: [ticketSchema]
 }, {
   timestamps: true
